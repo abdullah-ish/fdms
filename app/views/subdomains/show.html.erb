@@ -1,0 +1,13 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Name:  <%= @subdomain.name.capitalize %></h2>
+          <p class="card-text"><strong>Description:</strong> <%= @subdomain.description %></p>
+          <%= link_to "Back to Subdomains", subdomains_path, class: "btn btn-secondary mt-3" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

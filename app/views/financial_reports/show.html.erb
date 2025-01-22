@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Financial Report</h2>
+          <p class="card-text"><strong>Subdomain:</strong> <%= @financial_report.subdomain.name %></p>
+          <p class="card-text"><strong>Type:</strong> <%= @financial_report.data_type.capitalize %></p>
+          <p class="card-text"><strong>Amount:</strong> <%= number_to_currency(@financial_report.amount) %></p>
+          <p class="card-text"><strong>Description:</strong> <%= @financial_report.description %></p>
+          <% if @financial_report.attachment.attached? %>
+          <p class="card-text">
+            <strong>Attachment:</strong>
+            <%= link_to "Download Attachment", rails_blob_path(@financial_report.attachment, disposition: "attachment"), class: "btn btn-secondary mt-3" %>
+          </p>
+        <% end %>
+          <%= link_to "Back to Reports", subdomain_financial_reports_path(@subdomain), class: "btn btn-secondary mt-3" %>
+          <% unless ["local_admin", "iidm_admin"].include?(current_user.role) %>
+            <%= link_to "Give Feedback", new_subdomain_financial_report_review_path(@subdomain, financial_report_id: @financial_report.id), class: "btn btn-primary mt-3" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

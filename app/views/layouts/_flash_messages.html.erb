@@ -1,0 +1,7 @@
+<div class="container-fluid">
+  <% flash.each do |key, message| %>
+    <div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show" role="alert" data-auto-dismiss="true">
+      <%= message %>
+    </div>
+  <% end %>
+</div>

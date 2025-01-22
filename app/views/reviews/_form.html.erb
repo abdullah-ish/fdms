@@ -1,0 +1,37 @@
+<div class="container mt-5 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 mb-5">
+      <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0">Submit Review</h4>
+        </div>
+        <div class="card-body p-4">
+          <%= form_with(model: @review, url: @investigation.present? ? subdomain_financial_report_investigation_reviews_path(@subdomain, @investigation.financial_report, @investigation) : 
+                          @financial_report.present? ? subdomain_financial_report_reviews_path(@subdomain, @financial_report) : parent_reviews_path(@parent), 
+                          local: true) do |form| %>
+
+            <!-- Hidden Fields for Investigation or Financial Report -->
+            <% if @investigation %>
+              <%= form.hidden_field :investigation_id, value: @investigation.id %>
+            <% elsif @financial_report %>
+              <%= form.hidden_field :financial_report_id, value: @financial_report.id %>
+            <% end %>
+
+            <!-- Content Field -->
+            <div class="mb-4">
+              <%= form.label :content, "Review Content", class: "form-label fw-bold" %>
+              <%= form.text_area :content, class: "form-control", placeholder: "Enter your review", rows: 4, required: true %>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <%= link_to "Cancel", @financial_report.present? ? subdomain_financial_report_path(@subdomain, @financial_report) : subdomain_financial_report_investigation_path(@subdomain,  params[:financial_report_id], @investigation), class: "btn btn-danger btn-sm px-4 fw-bold" %>
+              <%= form.submit "Submit Review", class: "btn btn-primary btn-sm px-4 fw-bold" %>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

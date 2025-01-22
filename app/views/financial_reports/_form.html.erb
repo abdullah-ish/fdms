@@ -1,0 +1,54 @@
+<div class="container mt-5 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 mb-5">
+      <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0"><%= @financial_report.new_record? ? "Add Financial Details" : "Edit Financial Details" %></h4>
+        </div>
+        <div class="card-body p-4">
+        <%= form_with(model: @financial_report, url: @financial_report.new_record? ? subdomain_financial_reports_path(@subdomain) : subdomain_financial_report_path(@subdomain, @financial_report), local: true, multipart: true) do |f| %>
+
+            <!-- Data Type Field -->
+            <div class="mb-4">
+              <%= f.label :data_type, "Report Type", class: "form-label fw-bold" %>
+              <%= f.select :data_type, FinancialReport.data_types.keys.map { |key| [key.capitalize, key] }, {}, class: "form-select" %>
+            </div>
+          
+            <!-- Amount Field -->
+            <div class="mb-4">
+              <%= f.label :amount, "Amount", class: "form-label fw-bold" %>
+              <%= f.number_field :amount, class: "form-control", placeholder: "Enter Amount", required: true %>
+            </div>
+
+            <!-- Description Field -->
+            <div class="mb-4">
+              <%= f.label :description, "Description", class: "form-label fw-bold" %>
+              <%= f.text_area :description, class: "form-control", placeholder: "Enter Description", rows: 4, required: true %>
+            </div>
+
+            <!-- Attachment Field -->
+            <div class="mb-4">
+            <%= f.label :attachment, "Upload File", class: "form-label fw-bold" %>
+            <% if @financial_report.attachment.attached? %>
+              <p>Current File: 
+                <%= link_to @financial_report.attachment.filename, rails_blob_path(@financial_report.attachment, disposition: "attachment"), class: "text-decoration-none fw-bold text-primary" %>
+              </p>
+              <%= f.file_field :attachment, class: "form-control mt-2" %>
+              <small class="text-muted">Upload a new file to replace the existing one.</small>
+            <% else %>
+              <%= f.file_field :attachment, class: "form-control", required: true %>
+            <% end %>
+          </div>
+
+            <!-- Submit Button -->
+            <div class="text-center d-flex justify-content-center gap-3">
+              <%= link_to "Cancel", subdomain_financial_reports_path, class: "btn btn-danger btn-sm px-4 fw-bold" %>
+              <%= f.submit @financial_report.new_record? ? "Save" : "Update", class: "btn btn-primary btn-sm px-4 fw-bold" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

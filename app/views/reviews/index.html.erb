@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <% if @investigation.present? %>
+    <h1 class="text-center mb-4">Investigation Reviews</h1>
+  <% else %>
+    <h1 class="text-center mb-4">Financial Report Reviews</h1>
+  <% end %>
+  <!-- Reviews Table -->
+  <% if @reviews.any? %>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Subdomain</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reviews.each do |review| %>
+          <tr>
+            <td><%= review.id %></td>
+            <td><%= review.investigation&.subdomain&.name || review.financial_report&.subdomain&.name %></td>
+            <td><%= review.investigation.present? ? "Investigation" : "Financial Report" %></td>
+            <td><%= review.status.capitalize %></td>
+            <td>
+              <% if review.investigation.present? %>
+                <%= link_to "Show", subdomain_financial_report_investigation_review_path(@subdomain, review.financial_report, review.investigation, review), class: "btn btn-primary btn-sm" %>
+              <% elsif review.financial_report.present? %>
+                <%= link_to "Show", subdomain_financial_report_review_path(@subdomain, review.financial_report, review), class: "btn btn-primary btn-sm" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No reviews available for this investigation.</p>
+  <% end %>
+</div>

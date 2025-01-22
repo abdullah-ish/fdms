@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Investigation Details</h2>
+          
+          <!-- Subdomain -->
+          <p class="card-text"><strong>Subdomain:</strong> <%= @investigation.subdomain.name %></p>
+          
+          <!-- IIDM Admin -->
+          <p class="card-text"><strong>IIDM Admin:</strong> <%= @investigation.iidm_admin.name %></p>
+          
+          <!-- Description -->
+          <p class="card-text"><strong>Description:</strong> <%= @investigation.description %></p>
+          
+          <!-- Findings -->
+          <p class="card-text"><strong>Findings:</strong> <%= @investigation.findings %></p>
+          
+          <!-- Attachment -->
+          <% if @investigation.attachment.attached? %>
+            <p class="card-text">
+              <strong>Attachment:</strong>
+              <%= link_to "Download Attachment", rails_blob_path(@investigation.attachment, disposition: "attachment"), class: "btn btn-secondary mt-3" %>
+            </p>
+          <% end %>
+
+          <!-- Back to Investigations -->
+          <%= link_to "Back to Investigations", subdomain_financial_report_investigations_path(@subdomain, @financial_report), class: "btn btn-secondary mt-3" %>
+          
+          <!-- Conditional Feedback Link -->
+          <% unless ["local_admin", "iidm_admin"].include?(current_user.role) %>
+            <%= link_to "Give Feedback", new_subdomain_financial_report_investigation_review_path(@subdomain, @financial_report, @investigation), class: "btn btn-primary mt-3" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

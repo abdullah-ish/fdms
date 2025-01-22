@@ -1,0 +1,1799 @@
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5090147524461927690)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5090147524461927690)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-12-04 15:03:35 +0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 1.1ms | Allocations: 638)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 8.7ms | Allocations: 3517)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.6ms | Allocations: 224)
+  Rendered layout layouts/application.html.erb (Duration: 211.7ms | Allocations: 78033)
+Completed 200 OK in 269ms (Views: 221.0ms | ActiveRecord: 13.2ms | Allocations: 96832)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2024-12-04 15:03:37 +0500
+Processing by Users::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/registrations/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 0.4ms | Allocations: 125)
+  Rendered users/registrations/new.html.erb within layouts/application (Duration: 5.1ms | Allocations: 2384)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 19)
+  Rendered layout layouts/application.html.erb (Duration: 15.6ms | Allocations: 9175)
+Completed 200 OK in 19ms (Views: 17.4ms | ActiveRecord: 0.0ms | Allocations: 10474)
+
+
+Started POST "/users" for 127.0.0.1 at 2024-12-04 15:03:49 +0500
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"chaudhry17@gmail.com", "name"=>"Abdullah Chaudhry", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "role"=>"public_user"}, "commit"=>"Sign Up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "chaudhry17@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "chaudhry17@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "name", "role", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["email", "chaudhry17@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-12-04 10:03:49.932384"], ["updated_at", "2024-12-04 10:03:49.932384"], ["name", "Abdullah Chaudhry"], ["role", 2], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", "2024-12-04 10:03:49.932535"], ["unconfirmed_email", nil]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  Rendering layout layouts/mailer.html.erb
+  Rendering users/mailer/confirmation_instructions.html.erb within layouts/mailer
+  Rendered users/mailer/confirmation_instructions.html.erb within layouts/mailer (Duration: 0.7ms | Allocations: 261)
+  Rendered layout layouts/mailer.html.erb (Duration: 1.2ms | Allocations: 478)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 7.5ms
+Delivered mail 67502906fa03_149a959749421c@192.168.1.11.mail (19.2ms)
+Date: Wed, 04 Dec 2024 15:03:50 +0500
+From: from@example.com
+To: chaudhry17@gmail.com
+Message-ID: <67502906fa03_149a959749421c@192.168.1.11.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <p>Welcome chaudhry17@gmail.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=-uMmCsb9dfBv8WemDkHS">Confirm my account</a></p>
+
+  </body>
+</html>
+
+Redirected to http://lvh.me:3000/
+Completed 303 See Other in 472ms (ActiveRecord: 3.7ms | Allocations: 50940)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-04 15:03:50 +0500
+Processing by HomesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering homes/index.html.erb within layouts/application
+  Rendered homes/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 317)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 30)
+  Rendered layout layouts/application.html.erb (Duration: 15.0ms | Allocations: 7366)
+Completed 200 OK in 19ms (Views: 17.1ms | ActiveRecord: 0.0ms | Allocations: 8488)
+
+
+Started GET "/admin/login" for 127.0.0.1 at 2024-12-04 15:04:07 +0500
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Rendering layout /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/layouts/active_admin_logged_out.html.erb
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/devise/shared/_links.erb (Duration: 1.1ms | Allocations: 571)
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (Duration: 16.1ms | Allocations: 9001)
+  Rendered layout /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/layouts/active_admin_logged_out.html.erb (Duration: 35.3ms | Allocations: 22006)
+Completed 200 OK in 51ms (Views: 38.5ms | ActiveRecord: 4.0ms | Allocations: 27277)
+
+
+Started POST "/admin/login" for 127.0.0.1 at 2024-12-04 15:04:15 +0500
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "admin_user"=>{"email"=>"admin@fdms.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.7ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."email" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["email", "admin@fdms.com"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+Redirected to http://lvh.me:3000/admin
+Completed 303 See Other in 321ms (ActiveRecord: 0.8ms | Allocations: 5726)
+
+
+Started GET "/admin" for 127.0.0.1 at 2024-12-04 15:04:15 +0500
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/admin/dashboard.rb:9:in `block (4 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:10:in `block (5 levels) in <main>'
+  [1m[36mSubdomain Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "subdomains"[0m
+  ↳ app/admin/dashboard.rb:28:in `block (4 levels) in <main>'
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:29:in `block (5 levels) in <main>'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 4]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 8]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 9]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mFinancialReport Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "financial_reports"[0m
+  ↳ app/admin/dashboard.rb:52:in `block (4 levels) in <main>'
+  [1m[36mFinancialReport Load (0.2ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:53:in `block (5 levels) in <main>'
+  [1m[36mInvestigation Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "investigations"[0m
+  ↳ app/admin/dashboard.rb:70:in `block (4 levels) in <main>'
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:71:in `block (5 levels) in <main>'
+  [1m[36mReview Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews"[0m
+  ↳ app/admin/dashboard.rb:90:in `block (4 levels) in <main>'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:91:in `block (5 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb (Duration: 129.5ms | Allocations: 45894)
+Completed 200 OK in 136ms (Views: 118.6ms | ActiveRecord: 13.1ms | Allocations: 48046)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 15:04:42 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 50.0ms | Allocations: 40556)
+Completed 200 OK in 56ms (Views: 51.6ms | ActiveRecord: 0.7ms | Allocations: 42890)
+
+
+Started GET "/admin/subdomains" for 127.0.0.1 at 2024-12-04 15:04:46 +0500
+Processing by Admin::SubdomainsController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" ORDER BY "subdomains"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 9], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 8], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.4ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 4], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 50.3ms | Allocations: 30583)
+Completed 200 OK in 56ms (Views: 50.0ms | ActiveRecord: 1.6ms | Allocations: 32334)
+
+
+Started GET "/admin/reviews" for 127.0.0.1 at 2024-12-04 15:04:48 +0500
+Processing by Admin::ReviewsController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" ORDER BY "reviews"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 27.2ms | Allocations: 21039)
+Completed 200 OK in 34ms (Views: 27.9ms | ActiveRecord: 2.4ms | Allocations: 22822)
+
+
+Started GET "/admin/investigations" for 127.0.0.1 at 2024-12-04 15:04:49 +0500
+Processing by Admin::InvestigationsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mInvestigation Load (1.3ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" ORDER BY "investigations"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 40.3ms | Allocations: 27082)
+Completed 200 OK in 47ms (Views: 39.5ms | ActiveRecord: 3.5ms | Allocations: 28870)
+
+
+Started GET "/admin/financial_reports" for 127.0.0.1 at 2024-12-04 15:04:50 +0500
+Processing by Admin::FinancialReportsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mFinancialReport Load (0.3ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" ORDER BY "financial_reports"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 47.7ms | Allocations: 31882)
+Completed 200 OK in 55ms (Views: 47.7ms | ActiveRecord: 3.0ms | Allocations: 33681)
+
+
+Started GET "/admin/comments" for 127.0.0.1 at 2024-12-04 15:04:51 +0500
+Processing by Admin::CommentsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mActiveAdmin::Comment Count (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."namespace" = $1[0m  [["namespace", "admin"]]
+  [1m[36mActiveAdmin::Comment Load (0.3ms)[0m  [1m[34mSELECT "active_admin_comments".* FROM "active_admin_comments" WHERE "active_admin_comments"."namespace" = $1 ORDER BY "active_admin_comments"."id" desc LIMIT $2 OFFSET $3[0m  [["namespace", "admin"], ["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1[0m  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 4]]
+  [1m[36mActiveAdmin::Comment Pluck (0.4ms)[0m  [1m[34mSELECT DISTINCT "active_admin_comments"."resource_type" FROM "active_admin_comments" ORDER BY resource_type asc[0m
+  [1m[36mActiveAdmin::Comment Pluck (0.2ms)[0m  [1m[34mSELECT DISTINCT "active_admin_comments"."author_type" FROM "active_admin_comments" ORDER BY author_type asc[0m
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 70.3ms | Allocations: 45214)
+Completed 200 OK in 80ms (Views: 68.1ms | ActiveRecord: 6.8ms | Allocations: 47735)
+
+
+Started GET "/admin/admin_users" for 127.0.0.1 at 2024-12-04 15:04:51 +0500
+Processing by Admin::AdminUsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mAdminUser Load (0.4ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" ORDER BY "admin_users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 37.5ms | Allocations: 26116)
+Completed 200 OK in 42ms (Views: 38.1ms | ActiveRecord: 0.5ms | Allocations: 27837)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 15:05:00 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 41.1ms | Allocations: 35671)
+Completed 200 OK in 45ms (Views: 41.2ms | ActiveRecord: 0.6ms | Allocations: 37027)
+
+
+Started DELETE "/admin/users/20" for 127.0.0.1 at 2024-12-04 15:05:03 +0500
+Processing by Admin::UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"20"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" WHERE "investigations"."iidm_admin_id" = $1[0m  [["iidm_admin_id", 20]]
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."public_user_id" = $1[0m  [["public_user_id", 20]]
+  [1m[36mUser::HABTM_Subdomains Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users_subdomains" WHERE "users_subdomains"."user_id" = $1[0m  [["user_id", 20]]
+  [1m[36mUser Destroy (1.0ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 20]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://lvh.me:3000/admin/users
+Completed 302 Found in 27ms (ActiveRecord: 4.3ms | Allocations: 13828)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 15:05:03 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 72.5ms | Allocations: 34429)
+Completed 200 OK in 77ms (Views: 72.8ms | ActiveRecord: 0.7ms | Allocations: 35783)
+
+
+Started DELETE "/admin/users/19" for 127.0.0.1 at 2024-12-04 15:05:05 +0500
+Processing by Admin::UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"19"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" WHERE "investigations"."iidm_admin_id" = $1[0m  [["iidm_admin_id", 19]]
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."public_user_id" = $1[0m  [["public_user_id", 19]]
+  [1m[36mUser::HABTM_Subdomains Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users_subdomains" WHERE "users_subdomains"."user_id" = $1[0m  [["user_id", 19]]
+  [1m[36mUser Destroy (0.6ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 19]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://lvh.me:3000/admin/users
+Completed 302 Found in 17ms (ActiveRecord: 2.3ms | Allocations: 9265)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 15:05:05 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 40.5ms | Allocations: 33023)
+Completed 200 OK in 44ms (Views: 40.7ms | ActiveRecord: 0.6ms | Allocations: 34376)
+
+
+Started DELETE "/admin/users/18" for 127.0.0.1 at 2024-12-04 15:05:07 +0500
+Processing by Admin::UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"18"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" WHERE "investigations"."iidm_admin_id" = $1[0m  [["iidm_admin_id", 18]]
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."public_user_id" = $1[0m  [["public_user_id", 18]]
+  [1m[36mUser::HABTM_Subdomains Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users_subdomains" WHERE "users_subdomains"."user_id" = $1[0m  [["user_id", 18]]
+  [1m[36mUser Destroy (0.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 18]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://lvh.me:3000/admin/users
+Completed 302 Found in 19ms (ActiveRecord: 2.6ms | Allocations: 9270)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 15:05:07 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 49.4ms | Allocations: 31574)
+Completed 200 OK in 54ms (Views: 49.3ms | ActiveRecord: 0.8ms | Allocations: 32929)
+
+
+Started DELETE "/admin/users/17" for 127.0.0.1 at 2024-12-04 15:05:09 +0500
+Processing by Admin::UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"17"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInvestigation Load (0.3ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" WHERE "investigations"."iidm_admin_id" = $1[0m  [["iidm_admin_id", 17]]
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."public_user_id" = $1[0m  [["public_user_id", 17]]
+  [1m[36mUser::HABTM_Subdomains Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users_subdomains" WHERE "users_subdomains"."user_id" = $1[0m  [["user_id", 17]]
+  [1m[36mUser Destroy (0.6ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 17]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://lvh.me:3000/admin/users
+Completed 302 Found in 17ms (ActiveRecord: 2.2ms | Allocations: 9279)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 15:05:09 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 40.8ms | Allocations: 30178)
+Completed 200 OK in 44ms (Views: 40.9ms | ActiveRecord: 0.6ms | Allocations: 31539)
+
+
+Started DELETE "/admin/users/16" for 127.0.0.1 at 2024-12-04 15:05:42 +0500
+Processing by Admin::UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"16"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" WHERE "investigations"."iidm_admin_id" = $1[0m  [["iidm_admin_id", 16]]
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."public_user_id" = $1[0m  [["public_user_id", 16]]
+  [1m[36mUser::HABTM_Subdomains Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users_subdomains" WHERE "users_subdomains"."user_id" = $1[0m  [["user_id", 16]]
+  [1m[36mUser Destroy (0.6ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 16]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://lvh.me:3000/admin/users
+Completed 302 Found in 18ms (ActiveRecord: 2.5ms | Allocations: 9277)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 15:05:42 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 35.3ms | Allocations: 28769)
+Completed 200 OK in 39ms (Views: 35.6ms | ActiveRecord: 0.5ms | Allocations: 30148)
+
+
+Started DELETE "/admin/users/15" for 127.0.0.1 at 2024-12-04 15:05:44 +0500
+Processing by Admin::UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"15"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" WHERE "investigations"."iidm_admin_id" = $1[0m  [["iidm_admin_id", 15]]
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."public_user_id" = $1[0m  [["public_user_id", 15]]
+  [1m[36mUser::HABTM_Subdomains Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users_subdomains" WHERE "users_subdomains"."user_id" = $1[0m  [["user_id", 15]]
+  [1m[36mUser Destroy (0.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 15]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://lvh.me:3000/admin/users
+Completed 302 Found in 18ms (ActiveRecord: 2.4ms | Allocations: 9268)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 15:05:44 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 35.5ms | Allocations: 27431)
+Completed 200 OK in 39ms (Views: 35.7ms | ActiveRecord: 0.5ms | Allocations: 28786)
+
+
+Started GET "/admin/subdomains" for 127.0.0.1 at 2024-12-04 15:05:46 +0500
+Processing by Admin::SubdomainsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" ORDER BY "subdomains"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Pluck (0.4ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 9], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 8], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 4], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 42.8ms | Allocations: 29727)
+Completed 200 OK in 47ms (Views: 41.6ms | ActiveRecord: 1.8ms | Allocations: 31066)
+
+
+Started GET "/admin/dashboard" for 127.0.0.1 at 2024-12-04 15:05:48 +0500
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/admin/dashboard.rb:9:in `block (4 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:10:in `block (5 levels) in <main>'
+  [1m[36mSubdomain Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "subdomains"[0m
+  ↳ app/admin/dashboard.rb:28:in `block (4 levels) in <main>'
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:29:in `block (5 levels) in <main>'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 4]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 8]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 9]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mFinancialReport Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "financial_reports"[0m
+  ↳ app/admin/dashboard.rb:52:in `block (4 levels) in <main>'
+  [1m[36mFinancialReport Load (0.2ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:53:in `block (5 levels) in <main>'
+  [1m[36mInvestigation Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "investigations"[0m
+  ↳ app/admin/dashboard.rb:70:in `block (4 levels) in <main>'
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:71:in `block (5 levels) in <main>'
+  [1m[36mReview Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews"[0m
+  ↳ app/admin/dashboard.rb:90:in `block (4 levels) in <main>'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:91:in `block (5 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb (Duration: 42.7ms | Allocations: 30121)
+Completed 200 OK in 46ms (Views: 40.2ms | ActiveRecord: 3.2ms | Allocations: 31224)
+
+
+Started GET "/admin/subdomains" for 127.0.0.1 at 2024-12-04 15:22:07 +0500
+Processing by Admin::SubdomainsController#index as HTML
+  [1m[36mAdminUser Load (0.7ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mSubdomain Load (0.7ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" ORDER BY "subdomains"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Pluck (1.2ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 9], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 8], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 4], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 42.0ms | Allocations: 29762)
+Completed 200 OK in 58ms (Views: 39.9ms | ActiveRecord: 9.0ms | Allocations: 33867)
+
+
+Started GET "/admin/subdomains/new" for 127.0.0.1 at 2024-12-04 15:22:09 +0500
+Processing by Admin::SubdomainsController#new as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mUser Pluck (0.2ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 0]]
+  ↳ app/admin/subdomains.rb:28:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 40.5ms | Allocations: 28449)
+Completed 200 OK in 45ms (Views: 41.5ms | ActiveRecord: 0.5ms | Allocations: 29980)
+
+
+Started GET "/admin/subdomains" for 127.0.0.1 at 2024-12-04 15:22:21 +0500
+Processing by Admin::SubdomainsController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" ORDER BY "subdomains"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Pluck (0.4ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 9], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 8], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.4ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 4], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 45.1ms | Allocations: 29722)
+Completed 200 OK in 49ms (Views: 44.2ms | ActiveRecord: 1.6ms | Allocations: 31070)
+
+
+Started GET "/admin/subdomains" for 127.0.0.1 at 2024-12-04 15:32:03 +0500
+Processing by Admin::SubdomainsController#index as HTML
+  [1m[36mAdminUser Load (0.6ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mSubdomain Load (0.7ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" ORDER BY "subdomains"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Pluck (1.4ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 9], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 8], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.4ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 4], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 40.6ms | Allocations: 29748)
+Completed 200 OK in 58ms (Views: 38.2ms | ActiveRecord: 9.3ms | Allocations: 33828)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 16:02:13 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.8ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 38.8ms | Allocations: 27256)
+Completed 200 OK in 56ms (Views: 38.2ms | ActiveRecord: 7.9ms | Allocations: 31306)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 16:03:24 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 40.4ms | Allocations: 34669)
+Completed 200 OK in 69ms (Views: 42.5ms | ActiveRecord: 10.2ms | Allocations: 43408)
+
+
+Started GET "/admin/subdomains" for 127.0.0.1 at 2024-12-04 16:03:36 +0500
+Processing by Admin::SubdomainsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mSubdomain Load (0.6ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" ORDER BY "subdomains"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Pluck (0.7ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 9], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 8], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 4], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 51.1ms | Allocations: 34090)
+Completed 200 OK in 60ms (Views: 49.3ms | ActiveRecord: 6.1ms | Allocations: 36300)
+
+
+Started GET "/admin/reviews" for 127.0.0.1 at 2024-12-04 16:03:39 +0500
+Processing by Admin::ReviewsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mReview Load (1.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" ORDER BY "reviews"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 28.5ms | Allocations: 20706)
+Completed 200 OK in 38ms (Views: 28.5ms | ActiveRecord: 4.4ms | Allocations: 23125)
+
+
+Started GET "/admin/reviews/new" for 127.0.0.1 at 2024-12-04 16:03:41 +0500
+Processing by Admin::ReviewsController#new as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  ↳ app/admin/reviews.rb:20:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.2ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 2]]
+  ↳ app/admin/reviews.rb:26:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 36.2ms | Allocations: 25440)
+Completed 200 OK in 49ms (Views: 37.0ms | ActiveRecord: 0.7ms | Allocations: 32067)
+
+
+Started GET "/admin/investigations" for 127.0.0.1 at 2024-12-04 16:03:51 +0500
+Processing by Admin::InvestigationsController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mInvestigation Load (1.0ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" ORDER BY "investigations"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 34.9ms | Allocations: 26432)
+Completed 200 OK in 44ms (Views: 34.5ms | ActiveRecord: 4.9ms | Allocations: 28746)
+
+
+Started GET "/admin/investigations/new" for 127.0.0.1 at 2024-12-04 16:03:53 +0500
+Processing by Admin::InvestigationsController#new as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:21:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.2ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:25:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 93.8ms | Allocations: 23886)
+Completed 200 OK in 106ms (Views: 94.2ms | ActiveRecord: 0.7ms | Allocations: 29270)
+
+
+Started GET "/admin/financial_reports" for 127.0.0.1 at 2024-12-04 16:03:58 +0500
+Processing by Admin::FinancialReportsController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mFinancialReport Load (0.8ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" ORDER BY "financial_reports"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 34.9ms | Allocations: 27280)
+Completed 200 OK in 44ms (Views: 34.6ms | ActiveRecord: 4.3ms | Allocations: 29655)
+
+
+Started GET "/admin/comments" for 127.0.0.1 at 2024-12-04 16:04:05 +0500
+Processing by Admin::CommentsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mActiveAdmin::Comment Count (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."namespace" = $1[0m  [["namespace", "admin"]]
+  [1m[36mActiveAdmin::Comment Load (0.7ms)[0m  [1m[34mSELECT "active_admin_comments".* FROM "active_admin_comments" WHERE "active_admin_comments"."namespace" = $1 ORDER BY "active_admin_comments"."id" desc LIMIT $2 OFFSET $3[0m  [["namespace", "admin"], ["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1[0m  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 4]]
+  [1m[36mActiveAdmin::Comment Pluck (0.5ms)[0m  [1m[34mSELECT DISTINCT "active_admin_comments"."resource_type" FROM "active_admin_comments" ORDER BY resource_type asc[0m
+  [1m[36mActiveAdmin::Comment Pluck (0.3ms)[0m  [1m[34mSELECT DISTINCT "active_admin_comments"."author_type" FROM "active_admin_comments" ORDER BY author_type asc[0m
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 58.6ms | Allocations: 37189)
+Completed 200 OK in 64ms (Views: 56.4ms | ActiveRecord: 3.4ms | Allocations: 38835)
+
+
+Started GET "/admin/admin_users" for 127.0.0.1 at 2024-12-04 16:04:07 +0500
+Processing by Admin::AdminUsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" ORDER BY "admin_users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 33.5ms | Allocations: 26150)
+Completed 200 OK in 39ms (Views: 34.4ms | ActiveRecord: 0.5ms | Allocations: 27889)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-04 16:04:13 +0500
+Processing by HomesController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering layout layouts/application.html.erb
+  Rendering homes/index.html.erb within layouts/application
+  Rendered homes/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 375)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.7ms | Allocations: 195)
+  Rendered layout layouts/application.html.erb (Duration: 37.4ms | Allocations: 28707)
+Completed 200 OK in 44ms (Views: 39.8ms | ActiveRecord: 0.2ms | Allocations: 30682)
+
+
+Started GET "/admin/login" for 127.0.0.1 at 2024-12-04 16:05:38 +0500
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://lvh.me:3000/admin
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 11ms (ActiveRecord: 3.2ms | Allocations: 5326)
+
+
+Started GET "/admin" for 127.0.0.1 at 2024-12-04 16:05:38 +0500
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb
+  [1m[36mUser Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/admin/dashboard.rb:9:in `block (4 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:10:in `block (5 levels) in <main>'
+  [1m[36mSubdomain Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "subdomains"[0m
+  ↳ app/admin/dashboard.rb:28:in `block (4 levels) in <main>'
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:29:in `block (5 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 4]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 8]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 9]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mFinancialReport Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "financial_reports"[0m
+  ↳ app/admin/dashboard.rb:52:in `block (4 levels) in <main>'
+  [1m[36mFinancialReport Load (0.1ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:53:in `block (5 levels) in <main>'
+  [1m[36mInvestigation Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "investigations"[0m
+  ↳ app/admin/dashboard.rb:70:in `block (4 levels) in <main>'
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:71:in `block (5 levels) in <main>'
+  [1m[36mReview Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews"[0m
+  ↳ app/admin/dashboard.rb:90:in `block (4 levels) in <main>'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:91:in `block (5 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb (Duration: 83.6ms | Allocations: 44605)
+Completed 200 OK in 96ms (Views: 72.9ms | ActiveRecord: 13.5ms | Allocations: 48043)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 16:05:42 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 38.6ms | Allocations: 29527)
+Completed 200 OK in 45ms (Views: 40.3ms | ActiveRecord: 0.5ms | Allocations: 31571)
+
+
+Started GET "/admin/users/new" for 127.0.0.1 at 2024-12-04 16:05:44 +0500
+Processing by Admin::UsersController#new as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mSubdomain Pluck (0.3ms)[0m  [1m[34mSELECT "subdomains"."name", "subdomains"."id" FROM "subdomains"[0m
+  ↳ app/admin/users.rb:32:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 33.1ms | Allocations: 28850)
+Completed 200 OK in 38ms (Views: 34.1ms | ActiveRecord: 0.4ms | Allocations: 30363)
+
+
+Started POST "/admin/users" for 127.0.0.1 at 2024-12-04 16:06:01 +0500
+Processing by Admin::UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"a@gmail.com", "name"=>"Public User", "password"=>"[FILTERED]", "role"=>"public_user", "subdomain_ids"=>[""]}, "commit"=>"Create User"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "a@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "a@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "name", "role", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["email", "a@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-12-04 11:06:01.986092"], ["updated_at", "2024-12-04 11:06:01.986092"], ["name", "Public User"], ["role", 2], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", "2024-12-04 11:06:01.986218"], ["unconfirmed_email", nil]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering layout layouts/mailer.html.erb
+  Rendering users/mailer/confirmation_instructions.html.erb within layouts/mailer
+  Rendered users/mailer/confirmation_instructions.html.erb within layouts/mailer (Duration: 0.6ms | Allocations: 224)
+  Rendered layout layouts/mailer.html.erb (Duration: 1.4ms | Allocations: 439)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 5.4ms
+Delivered mail 67503799f40e5_149a9594c943c8@192.168.1.11.mail (18.2ms)
+Date: Wed, 04 Dec 2024 16:06:01 +0500
+From: from@example.com
+To: a@gmail.com
+Message-ID: <67503799f40e5_149a9594c943c8@192.168.1.11.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <p>Welcome a@gmail.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=1JP2g23iksnsC1CKduiP">Confirm my account</a></p>
+
+  </body>
+</html>
+
+Redirected to http://lvh.me:3000/admin/users/21
+Completed 302 Found in 348ms (ActiveRecord: 3.4ms | Allocations: 18057)
+
+
+Started GET "/admin/users/21" for 127.0.0.1 at 2024-12-04 16:06:02 +0500
+Processing by Admin::UsersController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/show.html.arb
+  [1m[36mActiveAdmin::Comment Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3[0m  [["resource_type", "User"], ["resource_id", 21], ["namespace", "admin"]]
+  ↳ app/admin/users.rb:47:in `block (2 levels) in <main>'
+  [1m[36mActiveAdmin::Comment Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3 LIMIT $4 OFFSET $5[0m  [["resource_type", "User"], ["resource_id", 21], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  ↳ app/admin/users.rb:47:in `block (2 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/show.html.arb (Duration: 59.4ms | Allocations: 26024)
+Completed 200 OK in 67ms (Views: 60.2ms | ActiveRecord: 1.2ms | Allocations: 28959)
+
+
+Started GET "/users/confirmation?confirmation_token=[FILTERED]" for ::1 at 2024-12-04 16:06:04 +0500
+Processing by Devise::ConfirmationsController#show as HTML
+  Parameters: {"confirmation_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."confirmation_token" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["confirmation_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (1.9ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "confirmed_at" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-12-04 11:06:04.899572"], ["confirmed_at", "2024-12-04 11:06:04.899207"], ["id", 21]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 13ms (ActiveRecord: 2.5ms | Allocations: 6078)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-12-04 16:06:04 +0500
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 1.0ms | Allocations: 602)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1908)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.6ms | Allocations: 195)
+  Rendered layout layouts/application.html.erb (Duration: 37.2ms | Allocations: 30096)
+Completed 200 OK in 43ms (Views: 41.3ms | ActiveRecord: 0.0ms | Allocations: 32382)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-04 16:06:07 +0500
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 16:06:12 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 38.6ms | Allocations: 28923)
+Completed 200 OK in 43ms (Views: 38.8ms | ActiveRecord: 0.5ms | Allocations: 30271)
+
+
+Started GET "/admin/users/11/edit" for 127.0.0.1 at 2024-12-04 16:06:16 +0500
+Processing by Admin::UsersController#edit as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/edit.html.arb
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mSubdomain Pluck (0.3ms)[0m  [1m[34mSELECT "subdomains"."name", "subdomains"."id" FROM "subdomains"[0m
+  ↳ app/admin/users.rb:32:in `block (3 levels) in <main>'
+  [1m[36mSubdomain Pluck (0.3ms)[0m  [1m[34mSELECT "subdomains"."id" FROM "subdomains" INNER JOIN "users_subdomains" ON "subdomains"."id" = "users_subdomains"."subdomain_id" WHERE "users_subdomains"."user_id" = $1[0m  [["user_id", 11]]
+  ↳ app/admin/users.rb:30:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/edit.html.arb (Duration: 35.7ms | Allocations: 29143)
+Completed 200 OK in 42ms (Views: 37.0ms | ActiveRecord: 0.9ms | Allocations: 31457)
+
+
+Started PATCH "/admin/users/11" for 127.0.0.1 at 2024-12-04 16:06:20 +0500
+Processing by Admin::UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"pu2@gmail.com", "name"=>"Local User 2", "password"=>"[FILTERED]", "role"=>"iidm_admin", "subdomain_ids"=>["", "4", "8"]}, "commit"=>"Update User", "id"=>"11"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" IN ($1, $2)[0m  [["id", 4], ["id", 8]]
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" INNER JOIN "users_subdomains" ON "subdomains"."id" = "users_subdomains"."subdomain_id" WHERE "users_subdomains"."user_id" = $1[0m  [["user_id", 11]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[31mROLLBACK[0m
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/edit.html.arb
+  [1m[36mSubdomain Pluck (0.3ms)[0m  [1m[34mSELECT "subdomains"."name", "subdomains"."id" FROM "subdomains"[0m
+  ↳ app/admin/users.rb:32:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/edit.html.arb (Duration: 32.3ms | Allocations: 28984)
+Completed 200 OK in 56ms (Views: 32.6ms | ActiveRecord: 7.1ms | Allocations: 39103)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 16:06:21 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 40.1ms | Allocations: 28769)
+Completed 200 OK in 44ms (Views: 40.2ms | ActiveRecord: 0.5ms | Allocations: 30117)
+
+
+Started GET "/admin/users/11/edit" for 127.0.0.1 at 2024-12-04 16:06:25 +0500
+Processing by Admin::UsersController#edit as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/edit.html.arb
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mSubdomain Pluck (0.3ms)[0m  [1m[34mSELECT "subdomains"."name", "subdomains"."id" FROM "subdomains"[0m
+  ↳ app/admin/users.rb:32:in `block (3 levels) in <main>'
+  [1m[36mSubdomain Pluck (0.4ms)[0m  [1m[34mSELECT "subdomains"."id" FROM "subdomains" INNER JOIN "users_subdomains" ON "subdomains"."id" = "users_subdomains"."subdomain_id" WHERE "users_subdomains"."user_id" = $1[0m  [["user_id", 11]]
+  ↳ app/admin/users.rb:30:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/edit.html.arb (Duration: 34.9ms | Allocations: 27978)
+Completed 200 OK in 40ms (Views: 34.8ms | ActiveRecord: 1.1ms | Allocations: 30065)
+
+
+Started PATCH "/admin/users/11" for 127.0.0.1 at 2024-12-04 16:06:32 +0500
+Processing by Admin::UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"pu2@gmail.com", "name"=>"Local User 2", "password"=>"[FILTERED]", "role"=>"iidm_admin", "subdomain_ids"=>["", "4", "8"]}, "commit"=>"Update User", "id"=>"11"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" IN ($1, $2)[0m  [["id", 4], ["id", 8]]
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" INNER JOIN "users_subdomains" ON "subdomains"."id" = "users_subdomains"."subdomain_id" WHERE "users_subdomains"."user_id" = $1[0m  [["user_id", 11]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (1.7ms)[0m  [1m[33mUPDATE "users" SET "encrypted_password" = $1, "updated_at" = $2, "role" = $3 WHERE "users"."id" = $4[0m  [["encrypted_password", "[FILTERED]"], ["updated_at", "2024-12-04 11:06:32.925484"], ["role", 1], ["id", 11]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://lvh.me:3000/admin/users/11
+Completed 302 Found in 317ms (ActiveRecord: 3.4ms | Allocations: 8972)
+
+
+Started GET "/admin/users/11" for 127.0.0.1 at 2024-12-04 16:06:32 +0500
+Processing by Admin::UsersController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/show.html.arb
+  [1m[36mActiveAdmin::Comment Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3[0m  [["resource_type", "User"], ["resource_id", 11], ["namespace", "admin"]]
+  ↳ app/admin/users.rb:47:in `block (2 levels) in <main>'
+  [1m[36mActiveAdmin::Comment Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3 LIMIT $4 OFFSET $5[0m  [["resource_type", "User"], ["resource_id", 11], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  ↳ app/admin/users.rb:47:in `block (2 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/show.html.arb (Duration: 67.1ms | Allocations: 24050)
+Completed 200 OK in 90ms (Views: 82.8ms | ActiveRecord: 1.1ms | Allocations: 26160)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 16:06:34 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 35.8ms | Allocations: 28769)
+Completed 200 OK in 40ms (Views: 36.1ms | ActiveRecord: 0.6ms | Allocations: 30103)
+
+
+Started GET "/admin/reviews" for 127.0.0.1 at 2024-12-04 16:06:42 +0500
+Processing by Admin::ReviewsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" ORDER BY "reviews"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 31.2ms | Allocations: 20697)
+Completed 200 OK in 38ms (Views: 31.9ms | ActiveRecord: 2.0ms | Allocations: 22474)
+
+
+Started GET "/admin/reviews/new" for 127.0.0.1 at 2024-12-04 16:06:44 +0500
+Processing by Admin::ReviewsController#new as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  ↳ app/admin/reviews.rb:20:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.2ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 2]]
+  ↳ app/admin/reviews.rb:26:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 28.1ms | Allocations: 24517)
+Completed 200 OK in 36ms (Views: 28.5ms | ActiveRecord: 0.6ms | Allocations: 29079)
+
+
+Started POST "/admin/reviews" for 127.0.0.1 at 2024-12-04 16:06:49 +0500
+Processing by Admin::ReviewsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "review"=>{"subdomain_id"=>"4", "public_user_id"=>"21", "content"=>"asdfdw", "status"=>"pending"}, "commit"=>"Create Review"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mReview Create (4.2ms)[0m  [1m[32mINSERT INTO "reviews" ("subdomain_id", "public_user_id", "content", "status", "created_at", "updated_at", "investigation_id", "financial_report_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["subdomain_id", 4], ["public_user_id", 21], ["content", "asdfdw"], ["status", 0], ["created_at", "2024-12-04 11:06:49.342580"], ["updated_at", "2024-12-04 11:06:49.342580"], ["investigation_id", nil], ["financial_report_id", nil]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://lvh.me:3000/admin/reviews/3
+Completed 302 Found in 24ms (ActiveRecord: 5.2ms | Allocations: 10014)
+
+
+Started GET "/admin/reviews/3" for 127.0.0.1 at 2024-12-04 16:06:49 +0500
+Processing by Admin::ReviewsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/show.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mActiveAdmin::Comment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3[0m  [["resource_type", "Review"], ["resource_id", 3], ["namespace", "admin"]]
+  [1m[36mActiveAdmin::Comment Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3 LIMIT $4 OFFSET $5[0m  [["resource_type", "Review"], ["resource_id", 3], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/show.html.arb (Duration: 45.5ms | Allocations: 33010)
+Completed 200 OK in 51ms (Views: 42.3ms | ActiveRecord: 4.7ms | Allocations: 35852)
+
+
+Started GET "/admin/investigations" for 127.0.0.1 at 2024-12-04 16:06:50 +0500
+Processing by Admin::InvestigationsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mInvestigation Load (0.3ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" ORDER BY "investigations"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 37.5ms | Allocations: 26387)
+Completed 200 OK in 42ms (Views: 37.7ms | ActiveRecord: 0.9ms | Allocations: 28117)
+
+
+Started GET "/admin/investigations/new" for 127.0.0.1 at 2024-12-04 16:06:52 +0500
+Processing by Admin::InvestigationsController#new as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:21:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.2ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:25:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 28.3ms | Allocations: 22880)
+Completed 200 OK in 36ms (Views: 28.8ms | ActiveRecord: 0.6ms | Allocations: 27209)
+
+
+Started POST "/admin/investigations" for 127.0.0.1 at 2024-12-04 16:07:01 +0500
+Processing by Admin::InvestigationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "investigation"=>{"subdomain_id"=>"4", "iidm_admin_id"=>"11", "description"=>"xwecvfew", "findings"=>"xwcev"}, "commit"=>"Create Investigation"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:21:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.2ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:25:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 31.9ms | Allocations: 23666)
+Completed 200 OK in 50ms (Views: 31.9ms | ActiveRecord: 1.4ms | Allocations: 33400)
+
+
+Started POST "/admin/investigations" for 127.0.0.1 at 2024-12-04 16:07:04 +0500
+Processing by Admin::InvestigationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "investigation"=>{"subdomain_id"=>"4", "iidm_admin_id"=>"11", "description"=>"xwecvfew", "findings"=>"xwcev"}, "commit"=>"Create Investigation"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:21:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.2ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:25:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 26.7ms | Allocations: 22723)
+Completed 200 OK in 39ms (Views: 26.6ms | ActiveRecord: 1.1ms | Allocations: 30169)
+
+
+Started POST "/admin/investigations" for 127.0.0.1 at 2024-12-04 16:07:31 +0500
+Processing by Admin::InvestigationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "investigation"=>{"subdomain_id"=>"4", "iidm_admin_id"=>"11", "description"=>"xwecvfewervfd3e", "findings"=>"xwceverfed"}, "commit"=>"Create Investigation"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:21:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.1ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:25:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 27.7ms | Allocations: 22729)
+Completed 200 OK in 42ms (Views: 27.7ms | ActiveRecord: 1.1ms | Allocations: 30171)
+
+
+Started GET "/admin/investigations" for 127.0.0.1 at 2024-12-04 16:07:33 +0500
+Processing by Admin::InvestigationsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mInvestigation Load (0.3ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" ORDER BY "investigations"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 37.4ms | Allocations: 25023)
+Completed 200 OK in 42ms (Views: 37.0ms | ActiveRecord: 1.1ms | Allocations: 26382)
+
+
+Started GET "/admin/investigations/new" for 127.0.0.1 at 2024-12-04 16:07:35 +0500
+Processing by Admin::InvestigationsController#new as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:21:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.1ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:25:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 27.4ms | Allocations: 22828)
+Completed 200 OK in 31ms (Views: 27.5ms | ActiveRecord: 0.5ms | Allocations: 24083)
+
+
+Started POST "/admin/investigations" for 127.0.0.1 at 2024-12-04 16:07:50 +0500
+Processing by Admin::InvestigationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "investigation"=>{"subdomain_id"=>"4", "iidm_admin_id"=>"11", "description"=>"wsdceve", "findings"=>"wdecv"}, "commit"=>"Create Investigation"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:21:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.2ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:25:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 31.8ms | Allocations: 22724)
+Completed 200 OK in 44ms (Views: 31.8ms | ActiveRecord: 1.2ms | Allocations: 30185)
+
+
+Started GET "/admin/reviews" for 127.0.0.1 at 2024-12-04 16:08:22 +0500
+Processing by Admin::ReviewsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" ORDER BY "reviews"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/admin/reviews.rb:10:in `block (2 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/admin/reviews.rb:11:in `block (2 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 36.8ms | Allocations: 25822)
+Completed 200 OK in 41ms (Views: 36.6ms | ActiveRecord: 0.9ms | Allocations: 27156)
+
+
+Started GET "/admin/investigations" for 127.0.0.1 at 2024-12-04 16:08:26 +0500
+Processing by Admin::InvestigationsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mInvestigation Load (0.4ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" ORDER BY "investigations"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 37.1ms | Allocations: 25024)
+Completed 200 OK in 41ms (Views: 36.6ms | ActiveRecord: 1.1ms | Allocations: 26385)
+
+
+Started GET "/admin/investigations/new" for 127.0.0.1 at 2024-12-04 16:08:27 +0500
+Processing by Admin::InvestigationsController#new as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:21:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.1ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:25:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 28.9ms | Allocations: 22829)
+Completed 200 OK in 32ms (Views: 29.1ms | ActiveRecord: 0.6ms | Allocations: 24068)
+
+
+Started GET "/admin/dashboard" for 127.0.0.1 at 2024-12-04 16:08:40 +0500
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/admin/dashboard.rb:9:in `block (4 levels) in <main>'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:10:in `block (5 levels) in <main>'
+  [1m[36mSubdomain Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "subdomains"[0m
+  ↳ app/admin/dashboard.rb:28:in `block (4 levels) in <main>'
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:29:in `block (5 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 4]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 8]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 9]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mFinancialReport Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "financial_reports"[0m
+  ↳ app/admin/dashboard.rb:52:in `block (4 levels) in <main>'
+  [1m[36mFinancialReport Load (0.2ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:53:in `block (5 levels) in <main>'
+  [1m[36mInvestigation Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "investigations"[0m
+  ↳ app/admin/dashboard.rb:70:in `block (4 levels) in <main>'
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:71:in `block (5 levels) in <main>'
+  [1m[36mReview Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews"[0m
+  ↳ app/admin/dashboard.rb:90:in `block (4 levels) in <main>'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:91:in `block (5 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/admin/dashboard.rb:94:in `block (7 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb (Duration: 53.1ms | Allocations: 31491)
+Completed 200 OK in 56ms (Views: 50.1ms | ActiveRecord: 3.6ms | Allocations: 32587)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 16:08:42 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 35.9ms | Allocations: 28766)
+Completed 200 OK in 41ms (Views: 36.2ms | ActiveRecord: 0.5ms | Allocations: 30115)
+
+
+Started GET "/admin/users/new" for 127.0.0.1 at 2024-12-04 16:09:14 +0500
+Processing by Admin::UsersController#new as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mSubdomain Pluck (0.3ms)[0m  [1m[34mSELECT "subdomains"."name", "subdomains"."id" FROM "subdomains"[0m
+  ↳ app/admin/users.rb:32:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 29.5ms | Allocations: 25904)
+Completed 200 OK in 33ms (Views: 29.7ms | ActiveRecord: 0.4ms | Allocations: 27168)
+
+
+Started POST "/admin/users" for 127.0.0.1 at 2024-12-04 16:09:31 +0500
+Processing by Admin::UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"new@gmail.com", "name"=>"AA", "password"=>"[FILTERED]", "role"=>"local_admin", "subdomain_ids"=>["", "8", "9"]}, "commit"=>"Create User"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mSubdomain Load (0.4ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" IN ($1, $2)[0m  [["id", 8], ["id", 9]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "new@gmail.com"], ["LIMIT", 1]]
+  [1m[36mSubdomain Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "subdomains" WHERE LOWER("subdomains"."name") = LOWER($1) AND "subdomains"."id" != $2 LIMIT $3[0m  [["name", "ss"], ["id", 8], ["LIMIT", 1]]
+  [1m[36mSubdomain Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "subdomains" WHERE LOWER("subdomains"."name") = LOWER($1) AND "subdomains"."id" != $2 LIMIT $3[0m  [["name", "subda"], ["id", 9], ["LIMIT", 1]]
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "new@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "name", "role", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["email", "new@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-12-04 11:09:31.459997"], ["updated_at", "2024-12-04 11:09:31.459997"], ["name", "AA"], ["role", 0], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", "2024-12-04 11:09:31.460057"], ["unconfirmed_email", nil]]
+  [1m[36mUser::HABTM_Subdomains Create (0.5ms)[0m  [1m[32mINSERT INTO "users_subdomains" ("user_id", "subdomain_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 22], ["subdomain_id", 8], ["created_at", "2024-12-04 11:09:31.462478"], ["updated_at", "2024-12-04 11:09:31.462478"]]
+  [1m[36mUser::HABTM_Subdomains Create (0.3ms)[0m  [1m[32mINSERT INTO "users_subdomains" ("user_id", "subdomain_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 22], ["subdomain_id", 9], ["created_at", "2024-12-04 11:09:31.465063"], ["updated_at", "2024-12-04 11:09:31.465063"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering layout layouts/mailer.html.erb
+  Rendering users/mailer/confirmation_instructions.html.erb within layouts/mailer
+  Rendered users/mailer/confirmation_instructions.html.erb within layouts/mailer (Duration: 0.2ms | Allocations: 72)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.4ms | Allocations: 169)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 1.9ms
+Delivered mail 6750386b73269_149a9597494447@192.168.1.11.mail (17.1ms)
+Date: Wed, 04 Dec 2024 16:09:31 +0500
+From: from@example.com
+To: new@gmail.com
+Message-ID: <6750386b73269_149a9597494447@192.168.1.11.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <p>Welcome new@gmail.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=TrUGJm3ovTynzYraf1ak">Confirm my account</a></p>
+
+  </body>
+</html>
+
+Redirected to http://lvh.me:3000/admin/users/22
+Completed 302 Found in 363ms (ActiveRecord: 11.4ms | Allocations: 25093)
+
+
+Started GET "/admin/users/22" for 127.0.0.1 at 2024-12-04 16:09:31 +0500
+Processing by Admin::UsersController#show as HTML
+  Parameters: {"id"=>"22"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/show.html.arb
+  [1m[36mActiveAdmin::Comment Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3[0m  [["resource_type", "User"], ["resource_id", 22], ["namespace", "admin"]]
+  ↳ app/admin/users.rb:47:in `block (2 levels) in <main>'
+  [1m[36mActiveAdmin::Comment Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3 LIMIT $4 OFFSET $5[0m  [["resource_type", "User"], ["resource_id", 22], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  ↳ app/admin/users.rb:47:in `block (2 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/show.html.arb (Duration: 49.5ms | Allocations: 24045)
+Completed 200 OK in 56ms (Views: 49.6ms | ActiveRecord: 1.0ms | Allocations: 26148)
+
+
+Started GET "/users/confirmation?confirmation_token=[FILTERED]" for ::1 at 2024-12-04 16:09:33 +0500
+Processing by Devise::ConfirmationsController#show as HTML
+  Parameters: {"confirmation_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."confirmation_token" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["confirmation_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (2.2ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "confirmed_at" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2024-12-04 11:09:33.847733"], ["confirmed_at", "2024-12-04 11:09:33.847425"], ["id", 22]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 14ms (ActiveRecord: 3.0ms | Allocations: 5434)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-12-04 16:09:33 +0500
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 0.3ms | Allocations: 162)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 947)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 22)
+  Rendered layout layouts/application.html.erb (Duration: 25.1ms | Allocations: 7875)
+Completed 200 OK in 28ms (Views: 25.9ms | ActiveRecord: 0.0ms | Allocations: 9232)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-04 16:09:36 +0500
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 16:09:36 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 41.0ms | Allocations: 30212)
+Completed 200 OK in 45ms (Views: 41.1ms | ActiveRecord: 0.5ms | Allocations: 31560)
+
+
+Started GET "/admin/subdomains" for 127.0.0.1 at 2024-12-04 16:09:48 +0500
+Processing by Admin::SubdomainsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mSubdomain Load (0.4ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" ORDER BY "subdomains"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Pluck (0.4ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 9], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 8], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 4], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 42.6ms | Allocations: 29855)
+Completed 200 OK in 48ms (Views: 42.3ms | ActiveRecord: 1.5ms | Allocations: 31572)
+
+
+Started GET "/admin/users" for 127.0.0.1 at 2024-12-04 16:10:11 +0500
+Processing by Admin::UsersController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 40.0ms | Allocations: 30192)
+Completed 200 OK in 44ms (Views: 40.2ms | ActiveRecord: 0.5ms | Allocations: 31529)
+
+
+Started GET "/admin/investigations" for 127.0.0.1 at 2024-12-04 16:10:32 +0500
+Processing by Admin::InvestigationsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mInvestigation Load (0.3ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" ORDER BY "investigations"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 34.3ms | Allocations: 25058)
+Completed 200 OK in 38ms (Views: 33.9ms | ActiveRecord: 1.0ms | Allocations: 26411)
+
+
+Started GET "/admin/investigations/new" for 127.0.0.1 at 2024-12-04 16:10:34 +0500
+Processing by Admin::InvestigationsController#new as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:21:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.2ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:25:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/new.html.arb (Duration: 31.6ms | Allocations: 22826)
+Completed 200 OK in 35ms (Views: 31.6ms | ActiveRecord: 0.6ms | Allocations: 24067)
+
+
+Started GET "/admin/financial_reports" for 127.0.0.1 at 2024-12-04 16:10:48 +0500
+Processing by Admin::FinancialReportsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mFinancialReport Load (0.4ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" ORDER BY "financial_reports"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 36.2ms | Allocations: 27109)
+Completed 200 OK in 41ms (Views: 36.2ms | ActiveRecord: 1.1ms | Allocations: 28849)
+
+
+Started GET "/admin/dashboard" for 127.0.0.1 at 2024-12-04 16:10:51 +0500
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `not_subdomain_route?'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb
+  [1m[36mUser Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/admin/dashboard.rb:9:in `block (4 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:10:in `block (5 levels) in <main>'
+  [1m[36mSubdomain Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "subdomains"[0m
+  ↳ app/admin/dashboard.rb:28:in `block (4 levels) in <main>'
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:29:in `block (5 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 4]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 8]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 9]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mFinancialReport Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "financial_reports"[0m
+  ↳ app/admin/dashboard.rb:52:in `block (4 levels) in <main>'
+  [1m[36mFinancialReport Load (0.2ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:53:in `block (5 levels) in <main>'
+  [1m[36mInvestigation Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "investigations"[0m
+  ↳ app/admin/dashboard.rb:70:in `block (4 levels) in <main>'
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:71:in `block (5 levels) in <main>'
+  [1m[36mReview Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews"[0m
+  ↳ app/admin/dashboard.rb:90:in `block (4 levels) in <main>'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:91:in `block (5 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/admin/dashboard.rb:94:in `block (7 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb (Duration: 50.7ms | Allocations: 31938)
+Completed 200 OK in 54ms (Views: 48.0ms | ActiveRecord: 3.3ms | Allocations: 33067)
+
+
+Started GET "/admin/dashboard" for 127.0.0.1 at 2024-12-05 11:14:48 +0500
+  [1m[36mUser Pluck (3.5ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:5:in `block in <main>'
+  [1m[36mSubdomain Pluck (1.3ms)[0m  [1m[34mSELECT "subdomains"."name", "subdomains"."id" FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:6:in `block in <main>'
+  [1m[36mActiveRecord::SchemaMigration Load (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (3.1ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `set_subdomain'
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb
+  [1m[36mUser Count (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/admin/dashboard.rb:9:in `block (4 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:10:in `block (5 levels) in <main>'
+  [1m[36mSubdomain Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "subdomains"[0m
+  ↳ app/admin/dashboard.rb:28:in `block (4 levels) in <main>'
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:29:in `block (5 levels) in <main>'
+  [1m[36mUser Load (4.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 4]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 8]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 9]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mFinancialReport Count (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "financial_reports"[0m
+  ↳ app/admin/dashboard.rb:52:in `block (4 levels) in <main>'
+  [1m[36mFinancialReport Load (0.2ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:53:in `block (5 levels) in <main>'
+  [1m[36mInvestigation Count (2.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "investigations"[0m
+  ↳ app/admin/dashboard.rb:70:in `block (4 levels) in <main>'
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:71:in `block (5 levels) in <main>'
+  [1m[36mReview Count (3.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews"[0m
+  ↳ app/admin/dashboard.rb:90:in `block (4 levels) in <main>'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:91:in `block (5 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/admin/dashboard.rb:94:in `block (7 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb (Duration: 371.8ms | Allocations: 104946)
+Completed 200 OK in 440ms (Views: 356.2ms | ActiveRecord: 48.5ms | Allocations: 119830)
+
+
+  [1m[36mUser Pluck (3.4ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:5:in `block in <main>'
+  [1m[36mSubdomain Pluck (1.0ms)[0m  [1m[34mSELECT "subdomains"."name", "subdomains"."id" FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:6:in `block in <main>'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5090147524461927690)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (4.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5090147524461927690)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Pluck (0.6ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:5:in `block in <main>'
+  [1m[36mSubdomain Pluck (0.3ms)[0m  [1m[34mSELECT "subdomains"."name", "subdomains"."id" FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:6:in `block in <main>'
+Started GET "/admin" for ::1 at 2024-12-10 14:06:38 +0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Admin::DashboardController#index as HTML
+Completed 401 Unauthorized in 18ms (ActiveRecord: 0.0ms | Allocations: 3084)
+
+
+Started GET "/admin/login" for ::1 at 2024-12-10 14:06:39 +0500
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Rendering layout /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/layouts/active_admin_logged_out.html.erb
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/devise/shared/_links.erb (Duration: 1.1ms | Allocations: 604)
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (Duration: 23.6ms | Allocations: 9832)
+  Rendered layout /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/layouts/active_admin_logged_out.html.erb (Duration: 7552.4ms | Allocations: 121645)
+Completed 200 OK in 7598ms (Views: 7563.9ms | ActiveRecord: 14.0ms | Allocations: 134921)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-10 14:06:48 +0500
+Started GET "/" for ::1 at 2024-12-10 14:06:50 +0500
+Processing by HomesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering homes/index.html.erb within layouts/application
+  Rendered homes/index.html.erb within layouts/application (Duration: 1.9ms | Allocations: 1241)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.6ms | Allocations: 203)
+  Rendered layout layouts/application.html.erb (Duration: 37.2ms | Allocations: 29383)
+Completed 200 OK in 42ms (Views: 40.1ms | ActiveRecord: 0.0ms | Allocations: 30481)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-10 14:06:52 +0500
+Started GET "/users/sign_in" for ::1 at 2024-12-10 14:06:52 +0500
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 1.1ms | Allocations: 670)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 8.2ms | Allocations: 2396)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 21)
+  Rendered layout layouts/application.html.erb (Duration: 19.5ms | Allocations: 9317)
+Completed 200 OK in 38ms (Views: 23.6ms | ActiveRecord: 2.1ms | Allocations: 17774)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-10 14:06:54 +0500
+Started POST "/users/sign_in" for ::1 at 2024-12-10 14:06:59 +0500
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"abc@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "abc@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 9ms (ActiveRecord: 1.0ms | Allocations: 3286)
+
+
+Processing by Users::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"abc@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 0.4ms | Allocations: 178)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 2.0ms | Allocations: 962)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.0ms | Allocations: 14)
+  Rendered layout layouts/application.html.erb (Duration: 16.5ms | Allocations: 7765)
+Completed 200 OK in 329ms (Views: 17.3ms | ActiveRecord: 0.0ms | Allocations: 8845)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-10 14:07:01 +0500
+Started POST "/users/sign_in" for ::1 at 2024-12-10 14:07:08 +0500
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"admin@fdms.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "admin@fdms.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.3ms | Allocations: 2106)
+
+
+Processing by Users::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"admin@fdms.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log In"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/sessions/new.html.erb within layouts/application
+  Rendered users/shared/_links.html.erb (Duration: 0.3ms | Allocations: 178)
+  Rendered users/sessions/new.html.erb within layouts/application (Duration: 1.6ms | Allocations: 951)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.0ms | Allocations: 14)
+  Rendered layout layouts/application.html.erb (Duration: 12.4ms | Allocations: 7760)
+Completed 200 OK in 314ms (Views: 13.1ms | ActiveRecord: 0.0ms | Allocations: 8286)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-10 14:07:10 +0500
+Started GET "/admin" for ::1 at 2024-12-10 14:07:38 +0500
+Processing by Admin::DashboardController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 872)
+
+
+Started GET "/admin/login" for ::1 at 2024-12-10 14:07:38 +0500
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+  Rendering layout /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/layouts/active_admin_logged_out.html.erb
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/devise/shared/_links.erb (Duration: 0.2ms | Allocations: 83)
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (Duration: 4.4ms | Allocations: 5568)
+  Rendered layout /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/layouts/active_admin_logged_out.html.erb (Duration: 19.5ms | Allocations: 17560)
+Completed 200 OK in 21ms (Views: 20.0ms | ActiveRecord: 0.0ms | Allocations: 18710)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-10 14:07:40 +0500
+Started POST "/admin/login" for ::1 at 2024-12-10 14:07:43 +0500
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "admin_user"=>{"email"=>"admin@fdms.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (3.0ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."email" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["email", "admin@fdms.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/admin
+Completed 303 See Other in 325ms (ActiveRecord: 3.0ms | Allocations: 7305)
+
+
+Started GET "/admin" for ::1 at 2024-12-10 14:07:43 +0500
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.5ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb
+  [1m[36mUser Count (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/admin/dashboard.rb:9:in `block (4 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:10:in `block (5 levels) in <main>'
+  [1m[36mSubdomain Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "subdomains"[0m
+  ↳ app/admin/dashboard.rb:28:in `block (4 levels) in <main>'
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:29:in `block (5 levels) in <main>'
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 4]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 8]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 9]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mFinancialReport Count (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "financial_reports"[0m
+  ↳ app/admin/dashboard.rb:52:in `block (4 levels) in <main>'
+  [1m[36mFinancialReport Load (0.2ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:53:in `block (5 levels) in <main>'
+  [1m[36mInvestigation Count (2.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "investigations"[0m
+  ↳ app/admin/dashboard.rb:70:in `block (4 levels) in <main>'
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:71:in `block (5 levels) in <main>'
+  [1m[36mReview Count (4.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews"[0m
+  ↳ app/admin/dashboard.rb:90:in `block (4 levels) in <main>'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:91:in `block (5 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/admin/dashboard.rb:94:in `block (7 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb (Duration: 111.9ms | Allocations: 53364)
+Completed 200 OK in 120ms (Views: 90.4ms | ActiveRecord: 24.0ms | Allocations: 56424)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-10 14:07:45 +0500
+Started GET "/admin/financial_reports" for ::1 at 2024-12-10 14:07:55 +0500
+Processing by Admin::FinancialReportsController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mFinancialReport Load (0.4ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" ORDER BY "financial_reports"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mSubdomain Load (0.3ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 52.5ms | Allocations: 29863)
+Completed 200 OK in 63ms (Views: 54.3ms | ActiveRecord: 2.9ms | Allocations: 33325)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-10 14:07:56 +0500
+  [1m[36mUser Pluck (3.5ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:5:in `block in <main>'
+  [1m[36mSubdomain Pluck (1.3ms)[0m  [1m[34mSELECT "subdomains"."name", "subdomains"."id" FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:6:in `block in <main>'
+Started GET "/admin" for ::1 at 2024-12-11 12:37:00 +0500
+  [1m[36mActiveRecord::SchemaMigration Load (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (2.7ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb
+  [1m[36mUser Count (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/admin/dashboard.rb:9:in `block (4 levels) in <main>'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:10:in `block (5 levels) in <main>'
+  [1m[36mSubdomain Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "subdomains"[0m
+  ↳ app/admin/dashboard.rb:28:in `block (4 levels) in <main>'
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:29:in `block (5 levels) in <main>'
+  [1m[36mUser Load (4.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 4]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 8]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 9]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mFinancialReport Count (2.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "financial_reports"[0m
+  ↳ app/admin/dashboard.rb:52:in `block (4 levels) in <main>'
+  [1m[36mFinancialReport Load (0.2ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:53:in `block (5 levels) in <main>'
+  [1m[36mInvestigation Count (2.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "investigations"[0m
+  ↳ app/admin/dashboard.rb:70:in `block (4 levels) in <main>'
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:71:in `block (5 levels) in <main>'
+  [1m[36mReview Count (5.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews"[0m
+  ↳ app/admin/dashboard.rb:90:in `block (4 levels) in <main>'
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:91:in `block (5 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/admin/dashboard.rb:94:in `block (7 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb (Duration: 340.7ms | Allocations: 105398)
+Completed 200 OK in 410ms (Views: 320.8ms | ActiveRecord: 64.8ms | Allocations: 122817)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-11 12:37:02 +0500
+Started GET "/admin" for ::1 at 2024-12-11 13:17:53 +0500
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.6ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb
+  [1m[36mUser Count (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/admin/dashboard.rb:9:in `block (4 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:10:in `block (5 levels) in <main>'
+  [1m[36mSubdomain Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "subdomains"[0m
+  ↳ app/admin/dashboard.rb:28:in `block (4 levels) in <main>'
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:29:in `block (5 levels) in <main>'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 4]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 8]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 9]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mFinancialReport Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "financial_reports"[0m
+  ↳ app/admin/dashboard.rb:52:in `block (4 levels) in <main>'
+  [1m[36mFinancialReport Load (0.1ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:53:in `block (5 levels) in <main>'
+  [1m[36mInvestigation Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "investigations"[0m
+  ↳ app/admin/dashboard.rb:70:in `block (4 levels) in <main>'
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:71:in `block (5 levels) in <main>'
+  [1m[36mReview Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews"[0m
+  ↳ app/admin/dashboard.rb:90:in `block (4 levels) in <main>'
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:91:in `block (5 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/admin/dashboard.rb:94:in `block (7 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb (Duration: 51.0ms | Allocations: 32423)
+Completed 200 OK in 73ms (Views: 45.0ms | ActiveRecord: 13.1ms | Allocations: 37366)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-11 13:17:55 +0500
+Started GET "/admin" for ::1 at 2024-12-11 17:03:41 +0500
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.7ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb
+  [1m[36mUser Count (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/admin/dashboard.rb:9:in `block (4 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:10:in `block (5 levels) in <main>'
+  [1m[36mSubdomain Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "subdomains"[0m
+  ↳ app/admin/dashboard.rb:28:in `block (4 levels) in <main>'
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:29:in `block (5 levels) in <main>'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 4]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 8]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 9]]
+  ↳ app/admin/dashboard.rb:33:in `block (7 levels) in <main>'
+  [1m[36mFinancialReport Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "financial_reports"[0m
+  ↳ app/admin/dashboard.rb:52:in `block (4 levels) in <main>'
+  [1m[36mFinancialReport Load (0.2ms)[0m  [1m[34mSELECT "financial_reports".* FROM "financial_reports" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:53:in `block (5 levels) in <main>'
+  [1m[36mInvestigation Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "investigations"[0m
+  ↳ app/admin/dashboard.rb:70:in `block (4 levels) in <main>'
+  [1m[36mInvestigation Load (0.2ms)[0m  [1m[34mSELECT "investigations".* FROM "investigations" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:71:in `block (5 levels) in <main>'
+  [1m[36mReview Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews"[0m
+  ↳ app/admin/dashboard.rb:90:in `block (4 levels) in <main>'
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" LIMIT $1[0m  [["LIMIT", 5]]
+  ↳ app/admin/dashboard.rb:91:in `block (5 levels) in <main>'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/admin/dashboard.rb:94:in `block (7 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/page/index.html.arb (Duration: 59.5ms | Allocations: 31928)
+Completed 200 OK in 80ms (Views: 53.0ms | ActiveRecord: 15.8ms | Allocations: 36847)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-11 17:03:43 +0500
+Started GET "/admin/subdomains/4/edit" for ::1 at 2024-12-11 19:20:37 +0500
+Processing by Admin::SubdomainsController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAdminUser Load (0.7ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubdomain Load (1.4ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/edit.html.arb
+  [1m[36mCACHE Subdomain Load (0.0ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Pluck (0.7ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 0]]
+  ↳ app/admin/subdomains.rb:28:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.8ms)[0m  [1m[34mSELECT "users"."id" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 4]]
+  ↳ app/admin/subdomains.rb:26:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/edit.html.arb (Duration: 78.2ms | Allocations: 34264)
+Completed 200 OK in 107ms (Views: 79.6ms | ActiveRecord: 12.9ms | Allocations: 41532)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-11 19:20:39 +0500
+Started PATCH "/admin/subdomains/4" for ::1 at 2024-12-11 19:20:42 +0500
+Processing by Admin::SubdomainsController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "subdomain"=>{"name"=>"LHR", "description"=>"LHR", "user_ids"=>["", "22", "9"]}, "commit"=>"Update Subdomain", "id"=>"4"}
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubdomain Load (0.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2)[0m  [["id", 22], ["id", 9]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1[0m  [["subdomain_id", 4]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubdomain::HABTM_Users Delete All (1.1ms)[0m  [1m[31mDELETE FROM "users_subdomains" WHERE "users_subdomains"."subdomain_id" = $1 AND "users_subdomains"."user_id" = $2[0m  [["subdomain_id", 4], ["user_id", 11]]
+  [1m[36mSubdomain::HABTM_Users Create (7.0ms)[0m  [1m[32mINSERT INTO "users_subdomains" ("user_id", "subdomain_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 22], ["subdomain_id", 4], ["created_at", "2024-12-11 14:20:42.357346"], ["updated_at", "2024-12-11 14:20:42.357346"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSubdomain Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "subdomains" WHERE LOWER("subdomains"."name") = LOWER($1) AND "subdomains"."id" != $2 LIMIT $3[0m  [["name", "LHR"], ["id", 4], ["LIMIT", 1]]
+  [1m[36mSubdomain Update (0.3ms)[0m  [1m[33mUPDATE "subdomains" SET "name" = $1, "updated_at" = $2 WHERE "subdomains"."id" = $3[0m  [["name", "lhr"], ["updated_at", "2024-12-11 14:20:42.380673"], ["id", 4]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/admin/subdomains/4
+Completed 302 Found in 61ms (ActiveRecord: 24.5ms | Allocations: 23037)
+
+
+Started GET "/admin/subdomains/4" for ::1 at 2024-12-11 19:20:42 +0500
+Processing by Admin::SubdomainsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAdminUser Load (0.5ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubdomain Load (0.5ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" WHERE "subdomains"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/show.html.arb
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 4], ["role", 0]]
+  ↳ app/admin/subdomains.rb:43:in `block (4 levels) in <main>'
+  [1m[36mActiveAdmin::Comment Count (4.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3[0m  [["resource_type", "Subdomain"], ["resource_id", 4], ["namespace", "admin"]]
+  ↳ app/admin/subdomains.rb:48:in `block (2 levels) in <main>'
+  [1m[36mActiveAdmin::Comment Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = $1 AND "active_admin_comments"."resource_id" = $2 AND "active_admin_comments"."namespace" = $3 LIMIT $4 OFFSET $5[0m  [["resource_type", "Subdomain"], ["resource_id", 4], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  ↳ app/admin/subdomains.rb:48:in `block (2 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/show.html.arb (Duration: 58.7ms | Allocations: 33716)
+Completed 200 OK in 74ms (Views: 50.8ms | ActiveRecord: 10.7ms | Allocations: 37095)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-11 19:20:44 +0500
+Started GET "/admin/subdomains" for ::1 at 2024-12-11 19:20:46 +0500
+Processing by Admin::SubdomainsController#index as HTML
+  [1m[36mAdminUser Load (0.3ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mSubdomain Load (0.4ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" ORDER BY "subdomains"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Pluck (0.4ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 9], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 8], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 4], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 46.6ms | Allocations: 32155)
+Completed 200 OK in 53ms (Views: 47.2ms | ActiveRecord: 1.6ms | Allocations: 35088)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-11 19:20:48 +0500
+  [1m[36mUser Pluck (3.5ms)[0m  [1m[34mSELECT "users"."name", "users"."id" FROM "users" WHERE "users"."role" = $1[0m  [["role", 1]]
+  ↳ app/admin/investigations.rb:5:in `block in <main>'
+  [1m[36mSubdomain Pluck (1.4ms)[0m  [1m[34mSELECT "subdomains"."name", "subdomains"."id" FROM "subdomains"[0m
+  ↳ app/admin/investigations.rb:6:in `block in <main>'
+Started GET "/admin/subdomains" for ::1 at 2024-12-13 11:42:45 +0500
+  [1m[36mActiveRecord::SchemaMigration Load (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Admin::SubdomainsController#index as HTML
+  [1m[36mAdminUser Load (2.8ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mSubdomain Load (1.2ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" ORDER BY "subdomains"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Pluck (5.2ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 9], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.7ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 8], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.8ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 4], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 314.2ms | Allocations: 90714)
+Completed 200 OK in 387ms (Views: 314.8ms | ActiveRecord: 45.1ms | Allocations: 109143)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-13 11:42:48 +0500
+Started GET "/admin/subdomains" for ::1 at 2024-12-13 15:32:59 +0500
+Processing by Admin::SubdomainsController#index as HTML
+  [1m[36mAdminUser Load (0.7ms)[0m  [1m[34mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = $1 ORDER BY "admin_users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb
+  [1m[36mSubdomain Load (0.7ms)[0m  [1m[34mSELECT "subdomains".* FROM "subdomains" ORDER BY "subdomains"."id" desc LIMIT $1 OFFSET $2[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Pluck (1.2ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 9], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 8], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  [1m[36mUser Pluck (0.3ms)[0m  [1m[34mSELECT "users"."name" FROM "users" INNER JOIN "users_subdomains" ON "users"."id" = "users_subdomains"."user_id" WHERE "users_subdomains"."subdomain_id" = $1 AND "users"."role" = $2[0m  [["subdomain_id", 4], ["role", 0]]
+  ↳ app/admin/subdomains.rb:16:in `block (3 levels) in <main>'
+  Rendered /Users/abdullah/.rvm/gems/ruby-3.2.2/gems/activeadmin-3.2.5/app/views/active_admin/resource/index.html.arb (Duration: 45.1ms | Allocations: 30315)
+Completed 200 OK in 66ms (Views: 43.2ms | ActiveRecord: 11.0ms | Allocations: 35518)
+
+
+Started GET "/sw.js" for ::1 at 2024-12-13 15:33:01 +0500

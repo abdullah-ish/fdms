@@ -1,0 +1,70 @@
+<div class="container my-5">
+  <!-- Welcome Section -->
+  <div class="text-center">
+    <h1 class="display-3 text-primary fw-bold">Welcome to the Financial Data Management System</h1>
+    <p class="lead text-muted mt-3">
+      Empowering administrators and citizens with seamless access to financial data, 
+      transparent reporting, and streamlined billing processes.
+    </p>
+  </div>
+
+  <!-- User Information Section -->
+  <% if user_signed_in? %>
+  <div class="text-center mt-4">
+    <p class="text-success fw-bold">
+     <%= current_user.name.capitalize %>  Logged in as
+      (<%= current_user.role.split('_').map(&:capitalize).join(' ') %>)
+    </p>
+  </div>
+<% end %>
+
+  <!-- Login Buttons Section -->
+  <% unless user_signed_in? %>
+    <div class="text-center mt-5">
+      <a href="<%= new_user_session_path %>" class="btn btn-primary btn-lg mx-2 fw-bold">Admin/User Login</a>
+      <a href="<%= new_admin_user_session_path %>" class="btn btn-secondary btn-lg mx-2 fw-bold">SuperAdmin Login</a>
+    </div>
+  <% end %>
+  
+  <!-- Features Section -->
+  <div class="mt-5">
+    <h2 class="fw-bold text-secondary text-center">Features</h2>
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <div class="card border-light mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Data Transparency</h5>
+            <p class="card-text text-muted">
+              Ensuring complete transparency in financial reporting and project updates.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-light mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Real-Time Insights</h5>
+            <p class="card-text text-muted">
+              Generate reports and charts to analyze financial performance in real-time.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-light mb-3">
+          <div class="card-body">
+            <h5 class="card-title">User-Friendly</h5>
+            <p class="card-text text-muted">
+              Designed with simplicity in mind, making it easy for all users to navigate.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-5 text-muted text-center">
+    <p>&copy; <%= Time.now.year %> Financial Data Management System. All rights reserved.</p>
+  </footer>
+</div>

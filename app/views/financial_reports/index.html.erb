@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h1 class="text-center mb-4">Financial Reports</h1>
+  
+  <% if current_user.local_admin? %>
+    <%= link_to "New Financial Report", new_subdomain_financial_report_path(subdomain_id: params[:subdomain_id]), class: "btn btn-success btn-sm mb-3" %>
+  <% end %>
+  
+  <table id="fdms-datatable" class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Subdomain</th>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @financial_reports.each do |financial_report| %>
+        <tr>
+          <td><%= financial_report.id %></td>
+          <td><%= financial_report.subdomain.name %></td>
+          <td><%= financial_report.data_type.capitalize %></td>
+          <td><%= number_to_currency(financial_report.amount) %></td>
+          <td><%= financial_report.description %></td>
+          <td>
+            <div class="btn-group d-flex justify-content-center">
+              <!-- View Financial Report -->
+              <%= link_to "View", subdomain_financial_report_path(subdomain_id: params[:subdomain_id], id: financial_report.id), class: "btn btn-primary btn-sm mx-1" %>
+
+              <!-- View Feedbacks -->
+              <%= link_to "Feedbacks", subdomain_financial_report_reviews_path(subdomain_id: params[:subdomain_id], financial_report_id: financial_report.id), class: "btn btn-info btn-sm mx-1" %>
+
+              <!-- View Investigations -->
+              <%= link_to "Investigations", subdomain_financial_report_investigations_path(subdomain_id: params[:subdomain_id], financial_report_id: financial_report.id), class: "btn btn-secondary btn-sm mx-1" %>
+
+              <!-- Edit and Delete only for non-public users -->
+              <% unless current_user.iidm_admin? || current_user.public_user? %>
+                <% if financial_report.uploaded_by_id == current_user.id %>
+                  <%= link_to "Edit", edit_subdomain_financial_report_path(@subdomain,financial_report), class: "btn btn-warning btn-sm mx-1" %>
+                  <%= button_to "Delete", subdomain_financial_report_path(subdomain_id: params[:subdomain_id], id: financial_report.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm mx-1" %>
+                <% end %> 
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

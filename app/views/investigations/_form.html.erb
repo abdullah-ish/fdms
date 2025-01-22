@@ -1,0 +1,47 @@
+<div class="container mt-5 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 mb-5">
+      <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0"><%= @investigation.new_record? ? "Add Investigation" : "Edit Investigation" %></h4>
+        </div>
+        <div class="card-body p-4">
+          <%= form_with(model: @investigation, url: @investigation.new_record? ? subdomain_financial_report_investigations_path(@subdomain, @financial_report) : subdomain_financial_report_investigation_path(@subdomain, @financial_report, @investigation), local: true) do |form| %>
+
+            <!-- Description Field -->
+            <div class="mb-4">
+              <%= form.label :description, "Add Description", class: "form-label fw-bold" %>
+              <%= form.text_area :description, class: "form-control", placeholder: "Enter Description", rows: 4, required: true %>
+            </div>
+
+            <!-- Findings Field -->
+            <div class="mb-4">
+              <%= form.label :findings, "Add Your Findings", class: "form-label fw-bold" %>
+              <%= form.text_area :findings, class: "form-control", placeholder: "Enter Findings", rows: 4, required: true %>
+            </div>
+
+            <!-- Attachment Field -->
+            <div class="mb-4">
+              <%= form.label :attachment, "Upload Attachment", class: "form-label fw-bold" %>
+              <% if @investigation.attachment.attached? %>
+                <p>Current Attachment: 
+                  <%= link_to @investigation.attachment.filename, rails_blob_path(@investigation.attachment, disposition: "attachment"), class: "text-decoration-none fw-bold text-primary" %>
+                </p>
+                <%= form.file_field :attachment, class: "form-control mt-2" %>
+                <small class="text-muted">Upload a new file to replace the existing one.</small>
+              <% else %>
+                <%= form.file_field :attachment, class: "form-control", required: true %>
+              <% end %>
+            </div>
+
+            <!-- Submit and Cancel Buttons -->
+            <div class="text-center d-flex justify-content-center gap-3">
+              <%= link_to "Cancel", subdomain_financial_report_investigations_path(@subdomain, @financial_report), class: "btn btn-danger btn-sm px-4 fw-bold" %>
+              <%= form.submit @investigation.new_record? ? "Save Investigation" : "Update Investigation", class: "btn btn-primary btn-sm px-4 fw-bold" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

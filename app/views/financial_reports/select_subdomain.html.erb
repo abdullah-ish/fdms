@@ -1,0 +1,31 @@
+<!-- app/views/financial_reports/select_subdomain.html.erb -->
+<div class="container py-5">
+  <h1 class="text-center mb-4 text-uppercase font-weight-bold">Subdomains</h1>
+  
+  <% if @subdomains.any? %>
+    <div class="row">
+      <% @subdomains.each do |subdomain| %>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card shadow-sm h-100 border-0">
+            <div class="card-body text-center">
+              <h5 class="card-title text-primary mb-3 font-weight-bold">
+                <%= subdomain.name.titleize %>
+              </h5>
+              <p class="card-text text-muted mb-4">
+                <%= subdomain.description.presence || "No description available." %>
+              </p>
+              <%= link_to 'View Reports', subdomain_financial_reports_path(subdomain), 
+                  class: 'btn btn-primary btn-block text-uppercase font-weight-bold', 
+                  style: 'border-radius: 20px;' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="text-center my-5">
+      <h3 class="text-muted">No Subdomains Available</h3>
+      <p>It looks like there are no subdomains to display right now. Please check back later.</p>
+    </div>
+  <% end %>
+</div>

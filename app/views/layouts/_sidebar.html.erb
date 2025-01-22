@@ -1,0 +1,27 @@
+<nav class="d-md-flex flex-column text-white p-3 vh-100 position-fixed" id="sidebarMenu" style="width: 250px; left: 0; top: 0; background: linear-gradient(45deg, #1e3c72, #2a5298);">
+  <!-- App Title -->
+    <span class="fs-4 fw-bold">FDMS</span>
+  </a>
+  <hr class="border-light">
+
+  <!-- Navigation Links -->
+  <ul class="nav nav-pills flex-column mb-auto">
+    <% if current_user.present? && current_user.is_a?(User) %>
+      <li class="nav-item">
+        <%= link_to "Dashboard", root_path, class: "nav-link text-white" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Financial Reports", select_subdomain_financial_reports_path, class: "nav-link text-white" %>
+      </li>
+
+    <% end %>
+  </ul>
+  <hr class="border-light">
+
+  <!-- Logout Button -->
+  <div>
+    <% if current_user.present? && current_user.is_a?(User) %>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-light w-100" %>
+    <% end %>
+  </div>
+</nav>

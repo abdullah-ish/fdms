@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <h1 class="text-center mb-4">My Subdomains</h1>
+  <table class="table table-striped table-hover" id="fdms-datatable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subdomains.each do |subdomain| %>
+        <tr>
+          <td><%= subdomain.id %></td>
+          <td><%= subdomain.name %></td>
+          <td><%= subdomain.description %></td>
+          <td>
+            <%= link_to "View", subdomain_path(subdomain), class: "btn btn-primary btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
